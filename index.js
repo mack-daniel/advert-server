@@ -25,7 +25,7 @@ app.use(cors());
 
 // routes
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.send("Hello World");
 });
 app.get("/api/users", async (req, res) => {
   try {
