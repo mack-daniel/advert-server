@@ -8,14 +8,17 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
+  // isVerified: { type: Boolean },
+  // otp
+  tokens: [{ type: Object }],
 });
 
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "7d",
-  });
-  return token;
-};
+// userSchema.methods.generateAuthToken = function () {
+//   const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+//     expiresIn: "1d",
+//   });
+//   return token;
+// };
 
 const User = mongoose.model("user", userSchema);
 
@@ -30,3 +33,9 @@ const validate = (data) => {
 };
 
 module.exports = { User, validate };
+
+// send otp na screen - generate pin number
+// verify otp
+// upon registration isama ang 6 pin
+// /verify
+//

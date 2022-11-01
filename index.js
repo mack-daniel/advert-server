@@ -5,14 +5,23 @@ const cors = require("cors");
 const connection = require("./conn/db");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const logoutRoutes = require("./routes/logout");
+const verifyRoutes = require("./routes/verify");
+
+const helmet = require("helmet");
 const { User } = require("./models/user");
+const { isAuth } = require("./middleware/isAuth");
 // database connection
 connection();
 
 // middlewares
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+// Using Helmet
+
+app.use(helmet());
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
@@ -60,6 +69,8 @@ app.patch("/api/users/:id", async (req, res, next) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+// app.use("/api/verify", verifyRoutes);
+// app.use("/api/logout", isAuth, logoutRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port http://localhost:${port}`));
