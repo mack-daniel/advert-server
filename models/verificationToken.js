@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
-// const UserOTPVerificationSchema = new Schema({
-//   userId: String,
-//   otp: String,
-//   createdAt: Date,
-//   expiredAt: Date,
-// });
+const UserOTPVerificationSchema = new Schema({
+  userId: String,
+  otp: String,
+  createdAt: Date,
+  expiredAt: Date,
+});
 
-// const UserOTPVerification = mongoose.model(
-//   "UserOTPVerification",
-//   UserOTPVerificationSchema
-// );
+const UserOTPVerification = mongoose.model(
+  "UserOTPVerification",
+  UserOTPVerificationSchema
+);
 
-// module.exports = UserOTPVerification;
+module.exports = UserOTPVerification;
 
 // // const verificationTokenSchema = new mongoose.Schema({
 // //   owner: {
